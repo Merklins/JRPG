@@ -460,7 +460,7 @@ public class Player
                         }
                     }
                 }
-            
+                
                 else if (vector.y < 0) {
                     for (int i = 1; i < -vector.y+1; i++) {
                         rectPlayer.Y -= 1;
