@@ -105,3 +105,4 @@ C:\Projects\RPG_GAME\RPG_GAME\bin\Debug\net6.0-windows\Content\Player\rat\Rat_wa
 C:\Projects\RPG_GAME\RPG_GAME\bin\Debug\net6.0-windows\Content\Player\rat\Rat_walkup_right_2.xnb
 C:\Projects\RPG_GAME\RPG_GAME\bin\Debug\net6.0-windows\Content\Player\rat\Rat_walkup_right_3.xnb
 C:\Projects\RPG_GAME\RPG_GAME\obj\Debug\net6.0-windows\RPG_GAME.csproj.Up2Date
+C:\Projects\RPG_GAME\RPG_GAME\obj\Debug\net6.0-windows\RPG_GAME.sourcelink.json
