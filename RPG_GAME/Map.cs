@@ -188,7 +188,7 @@ public class World
             foreach (var obj in world.allObjectsAndY.Keys)
             {
                 if (obj is Player)
-                    ((Player)obj).draw.mainloop(player, surface);
+                    ((Player)obj).draw.Mainloop(player, surface);
 
                 else if (obj is BaseTiledObject tiledObject)
                 {
@@ -232,7 +232,7 @@ public class World
         {
             MoveEnemy(world, player);
             world.tool.UpdateEnemyRect(world);
-            player.tool.update_player_rect(player, world);
+            player.tool.UpdatePlayerRect(player, world);
             UpdateTiledObjects(world, camera, gameTime);
             world.tool.SortObjects(player, camera, world);
             

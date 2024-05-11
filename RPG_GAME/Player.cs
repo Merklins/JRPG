@@ -43,27 +43,27 @@ public class Player
 
     public class Draw
     {
-        public void mainloop(Player player, SpriteBatch surface)
+        public void Mainloop(Player player, SpriteBatch surface)
         {
-            animation_move(player);
-            draw_sprite(player, surface);
+            AnimationMove(player);
+            DrawSprite(player, surface);
         }
 
-        public int animation_frame = 0;
+        public int animationFrame = 0;
         
-        public List<Texture2D> walkdown = new List<Texture2D>();
-        public List<Texture2D> walkup = new List<Texture2D>();
-        public List<Texture2D> walkright = new List<Texture2D>();
-        public List<Texture2D> walkleft = new List<Texture2D>();
+        public List<Texture2D> walkDown = new List<Texture2D>();
+        public List<Texture2D> walkUp = new List<Texture2D>();
+        public List<Texture2D> walkRight = new List<Texture2D>();
+        public List<Texture2D> walkLeft = new List<Texture2D>();
 
         public Texture2D sprite;
         public RectangleF rect;
         public RectangleF rectCollide;
         public RectangleF rectCollideConst;
-        private Vector2 position_screen;
+        private Vector2 positionScreen;
         public ShapeBatch ShapeBatch;
 
-        public void load_sprite_player(Player player, ContentManager content)
+        public void LoadSpritePlayer(Player player, ContentManager content)
         {
             List<string> direction_name = new List<string>()
             {
@@ -74,19 +74,19 @@ public class Player
                 for (int i = 1; i <= 3; i++) {
                     switch (direction) {
                         case "left": {
-                            walkleft.Add(content.Load<Texture2D>($"Player\\move_animation\\Ninja_{direction}{i}"));
+                            walkLeft.Add(content.Load<Texture2D>($"Player\\move_animation\\Ninja_{direction}{i}"));
                             break;
                         }
                         case "right": {
-                            walkright.Add(content.Load<Texture2D>($"Player\\move_animation\\Ninja_{direction}{i}"));
+                            walkRight.Add(content.Load<Texture2D>($"Player\\move_animation\\Ninja_{direction}{i}"));
                             break;
                         }
                         case "up": {
-                            walkup.Add(content.Load<Texture2D>($"Player\\move_animation\\Ninja_{direction}{i}"));
+                            walkUp.Add(content.Load<Texture2D>($"Player\\move_animation\\Ninja_{direction}{i}"));
                             break;
                         }
                         case "down": {
-                            walkdown.Add(content.Load<Texture2D>($"Player\\move_animation\\Ninja_{direction}{i}"));
+                            walkDown.Add(content.Load<Texture2D>($"Player\\move_animation\\Ninja_{direction}{i}"));
                             break;
                         }
                     }
@@ -94,135 +94,135 @@ public class Player
             }
         }
 
-        public void load_draw_player(Player player, ContentManager content, GraphicsDevice device, GraphicsDeviceManager manager)
+        public void LoadDrawPlayer(Player player, ContentManager content, GraphicsDevice device, GraphicsDeviceManager manager)
         {
-            float x_offset = -0;
-            float y_offset = -140;
-            float width_offset = 0;
-            float height_offset = 70;
+            float xOffset = -0;
+            float yOffset = -140;
+            float widthOffset = 0;
+            float heightOffset = 70;
             
             player.content = content;
             player.device = device;
             this.ShapeBatch = new ShapeBatch(device, content);
             sprite = content.Load<Texture2D>("Player\\Ninja_down1");
-            position_screen = new Vector2((manager.PreferredBackBufferWidth - sprite.Width) / 2, (manager.PreferredBackBufferHeight - sprite.Height) / 2);
+            positionScreen = new Vector2((manager.PreferredBackBufferWidth - sprite.Width) / 2, (manager.PreferredBackBufferHeight - sprite.Height) / 2);
             rect = new RectangleF((manager.PreferredBackBufferWidth - sprite.Width) / 2, (manager.PreferredBackBufferHeight - sprite.Height) / 2, sprite.Width, sprite.Height);
             rectCollide = new RectangleF(
-                (manager.PreferredBackBufferWidth - sprite.Width - x_offset) / 2 + 5,
-                (manager.PreferredBackBufferHeight - sprite.Height - y_offset) / 2,
-                sprite.Width - width_offset - 10,
-                sprite.Height - height_offset
+                (manager.PreferredBackBufferWidth - sprite.Width - xOffset) / 2 + 5,
+                (manager.PreferredBackBufferHeight - sprite.Height - yOffset) / 2,
+                sprite.Width - widthOffset - 10,
+                sprite.Height - heightOffset
             );
             rectCollideConst = new RectangleF(
-                (manager.PreferredBackBufferWidth - sprite.Width - x_offset) / 2 + 5,
-                (manager.PreferredBackBufferHeight - sprite.Height - y_offset) / 2,
-                sprite.Width - width_offset - 10,
-                sprite.Height - height_offset
+                (manager.PreferredBackBufferWidth - sprite.Width - xOffset) / 2 + 5,
+                (manager.PreferredBackBufferHeight - sprite.Height - yOffset) / 2,
+                sprite.Width - widthOffset - 10,
+                sprite.Height - heightOffset
             );
         }
 
-        public void load(Player player, ContentManager content, GraphicsDevice device, GraphicsDeviceManager manager)
+        public void Load(Player player, ContentManager content, GraphicsDevice device, GraphicsDeviceManager manager)
         {
-            player.draw.load_draw_player(player, content, device, manager);
-            player.draw.load_sprite_player(player, content);
-            player.ui.load(content, device);
+            player.draw.LoadDrawPlayer(player, content, device, manager);
+            player.draw.LoadSpritePlayer(player, content);
+            player.ui.Load(content, device);
         }
 
-        public void draw_sprite(Player player, SpriteBatch surface)
+        public void DrawSprite(Player player, SpriteBatch surface)
         {
-            surface.Draw(sprite, position_screen, Color.White);
+            surface.Draw(sprite, positionScreen, Color.White);
         }
 
-        public void animation_move(Player player)
+        public void AnimationMove(Player player)
         {
             int count_animation_frame = 16;
             if (player.control.sprinting) count_animation_frame = 10;
 
-            if (animation_frame + 1 >= count_animation_frame * walkdown.Count) animation_frame = 0;
+            if (animationFrame + 1 >= count_animation_frame * walkDown.Count) animationFrame = 0;
             
             if (player.control.up)
             {
                 if (!player.control.move)
                 {
-                    sprite = walkup[0];
-                    animation_frame = 0;
+                    sprite = walkUp[0];
+                    animationFrame = 0;
                 }
 
                 else
                 {
-                    sprite = walkup[animation_frame / count_animation_frame];
-                    animation_frame++;
+                    sprite = walkUp[animationFrame / count_animation_frame];
+                    animationFrame++;
                 }
-                player.control.old_direct = "up";
+                player.control.oldDirect = "up";
             }
         
             else if (player.control.down)
             {
                 if (!player.control.move)
                 {
-                    sprite = walkdown[0];
-                    animation_frame = 0;
+                    sprite = walkDown[0];
+                    animationFrame = 0;
                 }
                 else
                 {
-                    sprite = walkdown[animation_frame / count_animation_frame];
-                    animation_frame++;
+                    sprite = walkDown[animationFrame / count_animation_frame];
+                    animationFrame++;
                 }
                 
-                player.control.old_direct = "down";
+                player.control.oldDirect = "down";
             }
         
             else if (player.control.left)
             {
                 if (!player.control.move)
                 {
-                    sprite = walkleft[0];
-                    animation_frame = 0;
+                    sprite = walkLeft[0];
+                    animationFrame = 0;
                 }
                 else
                 {
-                    sprite = walkleft[animation_frame / count_animation_frame];
-                    animation_frame++;
+                    sprite = walkLeft[animationFrame / count_animation_frame];
+                    animationFrame++;
                 }
                 
-                player.control.old_direct = "left";
+                player.control.oldDirect = "left";
             }
         
             else if (player.control.right)
             {
                 if (!player.control.move)
                 {
-                    sprite = walkright[0];
-                    animation_frame = 0;
+                    sprite = walkRight[0];
+                    animationFrame = 0;
                 }
                 else
                 {
-                    sprite = walkright[animation_frame / count_animation_frame];
-                    animation_frame++;
+                    sprite = walkRight[animationFrame / count_animation_frame];
+                    animationFrame++;
                 }
                 
-                player.control.old_direct = "right";
+                player.control.oldDirect = "right";
             }
             
             else {
-                switch (player.control.old_direct) {
+                switch (player.control.oldDirect) {
                     case "up": {
-                        sprite = walkup[0];
+                        sprite = walkUp[0];
                         break;
                     }
                     
                     case "down": {
-                        sprite = walkdown[0];
+                        sprite = walkDown[0];
                         break;
                     }
 
                     case "right": {
-                        sprite = walkright[0];
+                        sprite = walkRight[0];
                         break;
                     }
 
                     case "left": {
-                        sprite = walkleft[0];
+                        sprite = walkLeft[0];
                         break;
                     }
                 }
@@ -234,35 +234,75 @@ public class Player
     {
         public bool noCollisionMode = false;
         
-        public int sprint_point_max = 3600;
-        public int sprint_point = 3600;
-        public int sprint_point_regeneration = 2;
-        public int sprint_point_cost = 5;
+        public int sprintPointMax = 3600;
+        public int sprintPoint = 3600;
+        public int sprintPointRegeneration = 2;
+        public int sprintPointCost = 5;
         
         public (float x, float y) vector = (0, 0);
-        public (string direction, int value) undo_vector = ("none", 0);
-        public float player_speed = 5.62f;
+        public (string direction, int value) undoVector = ("none", 0);
+        public float playerSpeed = 5.62f;
 
         public bool up = false;
         public bool down = false;
         public bool right = false;
         public bool left = false;
-        public string old_direct = "none";
+        public string oldDirect = "none";
         public bool sprinting = false;
-
-        public bool pressedQ = false;
-
         public bool move = false;
 
-        public void mainloop(Player player, Camera camera, World world)
-        {
-            key_move(player, camera);
-            key_sprint(player);
+        public Dictionary<Keys, bool> pressedKeys = new Dictionary<Keys, bool>();
 
-            move_position(player, world);
+        public void Mainloop(Player player, Camera camera, World world)
+        {
+            KeyMove(player);
+            KeySprint(player);
+            KeyUse(player);
+
+            MovePosition(player, world);
         }
 
-        public void key_move(Player player, Camera camera)
+        public bool BaseLogicPressButton(Keys key)
+        {
+            bool result = false;
+            
+            if (!pressedKeys.ContainsKey(key))
+                pressedKeys.Add(key, false);
+
+            if (Keyboard.GetState().IsKeyDown(key))
+            {
+                if (!pressedKeys[key]) result = true;
+                pressedKeys[key] = true;
+            }
+
+            else if (Keyboard.GetState().IsKeyUp(key))
+            {
+                pressedKeys[key] = false;
+            }
+
+            return result;
+        }
+
+        public void KeyUse(Player player)
+        {
+            if (BaseLogicPressButton(Keys.Q))
+            {
+                if (BaseTiledObject.useBaseWind)
+                    BaseTiledObject.useBaseWind = false;
+                else
+                    BaseTiledObject.useBaseWind = true;
+            }
+
+            if (BaseLogicPressButton(Keys.E))
+            {
+                if (player.control.noCollisionMode)
+                    player.control.noCollisionMode = false;
+                else
+                    player.control.noCollisionMode = true;
+            }
+        }
+
+        public void KeyMove(Player player)
         {
             vector.x = 0; vector.y = 0;
             up = false;
@@ -272,54 +312,30 @@ public class Player
             
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
-                vector.x -= player_speed;
+                vector.x -= playerSpeed;
                 left = true;
                 move = true;
             }
             
             else if (Keyboard.GetState().IsKeyDown(Keys.D))
             {
-                vector.x += player_speed;
+                vector.x += playerSpeed;
                 right = true;
                 move = true;
             }
             
             else if (Keyboard.GetState().IsKeyDown(Keys.W))
             {
-                vector.y -= player_speed;
+                vector.y -= playerSpeed;
                 up = true;
                 move = true;
             }
             
             else if (Keyboard.GetState().IsKeyDown(Keys.S))
             {
-                vector.y += player_speed;
+                vector.y += playerSpeed;
                 down = true;
                 move = true;
-            }
-            
-            else if (Keyboard.GetState().IsKeyDown(Keys.Q) && !pressedQ)
-            {
-                // player.tool.set_position_player(player, camera, 2600, 1920);
-                if (BaseTiledObject.useBaseWind)
-                    BaseTiledObject.useBaseWind = false;
-                else
-                    BaseTiledObject.useBaseWind = true;
-
-                pressedQ = true;
-            }
-            
-            else if (Keyboard.GetState().IsKeyUp(Keys.Q))
-            {
-                pressedQ = false;
-            }
-            
-            else if (Keyboard.GetState().IsKeyDown(Keys.E))
-            {
-                if (player.control.noCollisionMode)
-                    player.control.noCollisionMode = false;
-                else
-                    player.control.noCollisionMode = true;
             }
 
             else
@@ -332,49 +348,49 @@ public class Player
             }
         }
 
-        public void key_sprint(Player player)
+        public void KeySprint(Player player)
         {
             if (Keyboard.GetState().IsKeyDown(Keys.LeftShift))
             {
                 if (vector.x == 0 && vector.y == 0)
                 {
-                    player.tool.restore_sprint_point(player);
+                    player.tool.RestoreSprintPoint(player);
                     sprinting = false;
                 }
 
-                if (sprint_point >= sprint_point_cost && (vector.x != 0 || vector.y != 0))
+                if (sprintPoint >= sprintPointCost && (vector.x != 0 || vector.y != 0))
                 {
                     vector.x = vector.x * 1.5f;
                     vector.y = vector.y * 1.5f;
-                    sprint_point -= sprint_point_cost;
+                    sprintPoint -= sprintPointCost;
                     sprinting = true;
                 }
 
-                else if (sprint_point < sprint_point_cost)
+                else if (sprintPoint < sprintPointCost)
                 {
-                    sprint_point = 0;
+                    sprintPoint = 0;
                     sprinting = false;
                 }
             }
 
             else if (!Keyboard.GetState().IsKeyDown(Keys.LeftShift))
             {
-                player.tool.restore_sprint_point(player);
+                player.tool.RestoreSprintPoint(player);
                 sprinting = false;
             }
         }
 
-        public void move_position(Player player, World world)
+        public void MovePosition(Player player, World world)
         {
             List<(int pixel, string direction)> vectors = new List<(int pixel, string direction)>();
 
-            foreach (var rect_tile in world.borderTile) {
-                var rectPlayer = player.draw.rectCollide;
+            foreach (RectangleF rectTile in world.borderTile) {
+                RectangleF rectPlayer = player.draw.rectCollide;
                 if (vector.x > 0) {
                     for (int i = 1; i < vector.x+1; i++) {
                         rectPlayer.X += 1;
 
-                        if (rect_tile.Intersects(rectPlayer)) {
+                        if (rectTile.Intersects(rectPlayer)) {
                             rectPlayer.X -= 1;
                             vectors.Add((i - 1, "x"));
                             break;
@@ -386,7 +402,7 @@ public class Player
                     for (int i = 1; i < -vector.x+1; i++) {
                         rectPlayer.X -= 1;
                     
-                        if (rect_tile.Intersects(rectPlayer)) {
+                        if (rectTile.Intersects(rectPlayer)) {
                             rectPlayer.X += 1;
                             vectors.Add( (-(i - 1), "x") );
                             break;
@@ -398,7 +414,7 @@ public class Player
                     for (int i = 1; i < vector.y+1; i++) {
                         rectPlayer.Y += 1;
                     
-                        if (rect_tile.Intersects(rectPlayer)) {
+                        if (rectTile.Intersects(rectPlayer)) {
                             rectPlayer.Y -= 1;
                             vectors.Add((i - 1, "y"));
                             break;
@@ -410,7 +426,7 @@ public class Player
                     for (int i = 1; i < -vector.y+1; i++) {
                         rectPlayer.Y -= 1;
                     
-                        if (rect_tile.Intersects(rectPlayer)) {
+                        if (rectTile.Intersects(rectPlayer)) {
                             rectPlayer.Y += 1;
                             vectors.Add(( -(i - 1), "y" ));
                             break;
@@ -477,22 +493,22 @@ public class Player
             if (!noCollisionMode)
             {
                 if (vectors.Count > 0) {
-                    bool pixel_minus = false;
+                    bool pixelMinus = false;
                     vectors.Sort();
                     if (vectors[0].pixel < 0)
-                        pixel_minus = true;
+                        pixelMinus = true;
                 
-                    int value_delta_pixel = pixel_minus ? vectors.Last().pixel : vectors[0].pixel;
+                    int valueDeltaPixel = pixelMinus ? vectors.Last().pixel : vectors[0].pixel;
                 
                     if (vectors[0].direction == "x")
                     {
-                        vector.x = value_delta_pixel;
+                        vector.x = valueDeltaPixel;
                         if (vector.x == 0) move = false;
                     }
                 
                     else if (vectors[0].direction == "y")
                     {
-                        vector.y = value_delta_pixel;
+                        vector.y = valueDeltaPixel;
                         if (vector.y == 0) move = false;
                     }
                 }
@@ -500,8 +516,8 @@ public class Player
             
             if (!move && sprinting)
             {
-                player.control.sprint_point += player.control.sprint_point_cost;
-                player.tool.restore_sprint_point(player);
+                player.control.sprintPoint += player.control.sprintPointCost;
+                player.tool.RestoreSprintPoint(player);
             }
             
             player.draw.rect.X += vector.x;
@@ -520,7 +536,7 @@ public class Player
             ShapeBatch = new ShapeBatch(device, content);
         }
         
-        public void draw_hitbox(Player player, SpriteBatch surface)
+        public void DrawHitbox(Player player, SpriteBatch surface)
         {
             ShapeBatch.Begin();
             ShapeBatch.DrawRectangle(
@@ -535,19 +551,19 @@ public class Player
 
     public class UI
     {
-        public ShapeBatch sprint_bar_surface;
+        public ShapeBatch sprintBarSurface;
         
-        public void mainloop(Player player)
+        public void Mainloop(Player player)
         {
-            sprint_bar_surface.Begin();
-            draw_sprint_box();
-            draw_sprint_line(player);
-            sprint_bar_surface.End();
+            sprintBarSurface.Begin();
+            DrawSprintBox();
+            DrawSprintLine(player);
+            sprintBarSurface.End();
         }
 
-        public void draw_sprint_box()
+        public void DrawSprintBox()
         {
-            sprint_bar_surface.DrawRectangle(
+            sprintBarSurface.DrawRectangle(
                 new Vector2(50, 620),
                 new Vector2(240, 30),
                 new Color(0, 0, 0, 0),
@@ -556,18 +572,18 @@ public class Player
             );
         }
 
-        public void draw_sprint_line(Player player)
+        public void DrawSprintLine(Player player)
         {
             float percentLine;
-            if (player.control.sprint_point == 0) return;
+            if (player.control.sprintPoint == 0) return;
             else
             {
                 percentLine = 
-                    (float)player.control.sprint_point /
-                    (float)player.control.sprint_point_max;
+                    (float)player.control.sprintPoint /
+                    (float)player.control.sprintPointMax;
             }
 
-            sprint_bar_surface.DrawRectangle(
+            sprintBarSurface.DrawRectangle(
                 new Vector2(55, 625),
                 new Vector2(230 * percentLine, 20),
                 new Color(0, 0, 0, 0),
@@ -576,9 +592,9 @@ public class Player
                 );
         }
 
-        public void load(ContentManager content, GraphicsDevice device)
+        public void Load(ContentManager content, GraphicsDevice device)
         {
-            sprint_bar_surface = new ShapeBatch(device, content);
+            sprintBarSurface = new ShapeBatch(device, content);
         }
     }
 
@@ -589,7 +605,7 @@ public class Player
 
         public void startFight(Player player, Enemy enemy, Camera camera)
         {
-            player.tool.set_position_player(player, camera, -200, -200);
+            player.tool.SetPositionPlayer(player, camera, -200, -200);
         }
 
         public bool EnemyChasedPlayer(RectangleF playerRect, RectangleF enemyRect)
@@ -601,21 +617,21 @@ public class Player
 
     public class Tool
     {
-        public void restore_sprint_point(Player player)
+        public void RestoreSprintPoint(Player player)
         {
-            if (player.control.sprint_point == player.control.sprint_point_max) return;
+            if (player.control.sprintPoint == player.control.sprintPointMax) return;
             
-            if (player.control.sprint_point + player.control.sprint_point_regeneration <= player.control.sprint_point_max)
+            if (player.control.sprintPoint + player.control.sprintPointRegeneration <= player.control.sprintPointMax)
             {
-                player.control.sprint_point += player.control.sprint_point_regeneration;
+                player.control.sprintPoint += player.control.sprintPointRegeneration;
             }
             else
             {
-                player.control.sprint_point += player.control.sprint_point_max - player.control.sprint_point;
+                player.control.sprintPoint += player.control.sprintPointMax - player.control.sprintPoint;
             }
         }
         
-        public void set_position_player(Player player, Camera camera, int x, int y)
+        public void SetPositionPlayer(Player player, Camera camera, int x, int y)
         {
             x -= (int)player.draw.rect.X;
             y -= (int)player.draw.rect.Y + (int)player.draw.rect.Height - 48;
@@ -628,7 +644,7 @@ public class Player
             camera.y += y;
         }
         
-        public void update_player_rect(Player player, World world)
+        public void UpdatePlayerRect(Player player, World world)
         {
             world.allObjectsAndY[player] = player.draw.rect.Y;
         }

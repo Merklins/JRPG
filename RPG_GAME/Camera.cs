@@ -20,15 +20,15 @@ public class Camera
 
     public void undo_move(Player player)
     {
-        if (player.control.undo_vector.direction == "none") return;
+        if (player.control.undoVector.direction == "none") return;
 
-        if (player.control.undo_vector.direction == "right")
-            x -= player.control.undo_vector.value;
-        else if (player.control.undo_vector.direction == "left")
-            x += player.control.undo_vector.value;
-        else if (player.control.undo_vector.direction == "down")
-            y -= player.control.undo_vector.value;
-        else if (player.control.undo_vector.direction == "up")
-            y += player.control.undo_vector.value;
+        if (player.control.undoVector.direction == "right")
+            x -= player.control.undoVector.value;
+        else if (player.control.undoVector.direction == "left")
+            x += player.control.undoVector.value;
+        else if (player.control.undoVector.direction == "down")
+            y -= player.control.undoVector.value;
+        else if (player.control.undoVector.direction == "up")
+            y += player.control.undoVector.value;
     }
 }

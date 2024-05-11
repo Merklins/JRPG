@@ -51,8 +51,8 @@ public class Game1 : Game
         world.tool.AddWorldObjects(player, camera, world);
         world.tool.AddWorldBorderTile(player, camera, world);
         
-        player.draw.load(player, Content, GraphicsDevice, _graphics);
-        player.tool.set_position_player(player, camera, 2400, 1920);
+        player.draw.Load(player, Content, GraphicsDevice, _graphics);
+        player.tool.SetPositionPlayer(player, camera, 2400, 1920);
     }
 
     protected override void Update(GameTime gameTime)
@@ -66,7 +66,7 @@ public class Game1 : Game
 
         // TODO: Add your update logic here
 
-        player.control.mainloop(player, camera, world);
+        player.control.Mainloop(player, camera, world);
         camera.mainloop(player);
         world.control.Mainloop(player, camera, world, gameTime);
         base.Update(gameTime);
@@ -81,7 +81,7 @@ public class Game1 : Game
         world.draw.Mainloop(player, camera, world, spriteBatch);
         spriteBatch.End();
 
-        player.ui.mainloop(player);
+        player.ui.Mainloop(player);
         //world.debugs.drawRectVisionAreaEnemy(world, camera);
         //world.debugs.drawBorderTile(camera, world);
         //world.debugs.draw_object_hitbox(player, camera, world, spriteBatch);
