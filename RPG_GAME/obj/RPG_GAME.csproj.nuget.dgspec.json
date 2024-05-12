@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Projects\\RPG_GAME\\RPG_GAME\\RPG_GAME.csproj": {}
+    "C:\\Users\\Artem\\LeetCode\\JRPG\\RPG_GAME\\RPG_GAME.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\RPG_GAME\\RPG_GAME\\RPG_GAME.csproj": {
+    "C:\\Users\\Artem\\LeetCode\\JRPG\\RPG_GAME\\RPG_GAME.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\RPG_GAME\\RPG_GAME\\RPG_GAME.csproj",
+        "projectUniqueName": "C:\\Users\\Artem\\LeetCode\\JRPG\\RPG_GAME\\RPG_GAME.csproj",
         "projectName": "RPG_GAME",
-        "projectPath": "C:\\Projects\\RPG_GAME\\RPG_GAME\\RPG_GAME.csproj",
-        "packagesPath": "C:\\Users\\Артем\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\RPG_GAME\\RPG_GAME\\obj\\",
+        "projectPath": "C:\\Users\\Artem\\LeetCode\\JRPG\\RPG_GAME\\RPG_GAME.csproj",
+        "packagesPath": "C:\\Users\\Artem\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Artem\\LeetCode\\JRPG\\RPG_GAME\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Артем\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Artem\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0-windows"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -34,11 +32,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -76,19 +69,19 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.27, 6.0.27]"
+              "version": "[6.0.29, 6.0.29]"
             },
             {
               "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[6.0.27, 6.0.27]"
+              "version": "[6.0.29, 6.0.29]"
             },
             {
               "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.27, 6.0.27]"
+              "version": "[6.0.29, 6.0.29]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[6.0.27, 6.0.27]"
+              "version": "[6.0.29, 6.0.29]"
             }
           ],
           "frameworkReferences": {
@@ -99,7 +92,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.104\\RuntimeIdentifierGraph.json"
         }
       }
     }

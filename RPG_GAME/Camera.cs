@@ -7,18 +7,18 @@ public class Camera
     public float x = 0;
     public float y = 0;
 
-    public void mainloop(Player player)
+    public void Mainloop(Player player)
     {
-        move(player);
+        Move(player);
     }
 
-    public void move(Player player)
+    public void Move(Player player)
     {
         this.x += player.control.vector.x;
         this.y += player.control.vector.y;
     }
 
-    public void undo_move(Player player)
+    public void UndoMove(Player player)
     {
         if (player.control.undoVector.direction == "none") return;
 

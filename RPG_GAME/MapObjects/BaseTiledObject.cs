@@ -15,22 +15,22 @@ public abstract class BaseTiledObject : TiledObject
     public static float increareRangeSeePixel = 200;
     public static bool useBaseWind = false;
     
-    public int id;
-    public string name;
-    public string type;
-    public string @class;
-    public float x;
-    public float y;
-    public float rotation;
-    public float width;
-    public float height;
-    public int gid;
-    public byte dataRotationFlag;
+    new public int id;
+    new public string name;
+    new public string type;
+    new public string @class;
+    new public float x;
+    new public float y;
+    new public float rotation;
+    new public float width;
+    new public float height;
+    new public int gid;
+    new public byte dataRotationFlag;
     
-    public TiledProperty[] properties;
-    public TiledPolygon polygon;
-    public TiledPoint point;
-    public TiledEllipse ellipse;
+    new public TiledProperty[] properties;
+    new public TiledPolygon polygon;
+    new public TiledPoint point;
+    new public TiledEllipse ellipse;
     
     public Texture2D Texture { get; set; }
     public Vector2 Position { get; set; }

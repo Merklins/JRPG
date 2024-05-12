@@ -27,7 +27,7 @@ public class World
     public Dictionary<object, float> allObjectsAndY = new Dictionary<object, float>();
     public List<RectangleF> borderTile = new List<RectangleF>();
     public List<Enemy> enemyMap = new List<Enemy>();
-    public Dictionary<string, BaseWind> NameAndEachWindTiledObject = new Dictionary<string, BaseWind>();
+    public Dictionary<string, BaseWind> nameAndEachWindTiledObject = new Dictionary<string, BaseWind>();
 
     public Dictionary<int, List<(int x, int y, int width, int height)>> gidTileAndBorderTile =
         new Dictionary<int, List<(int x, int y, int width, int height)>>()
@@ -201,10 +201,10 @@ public class World
                     if (BaseTiledObject.useBaseWind)
                     {
                         if (tiledObject is Tree tree)
-                            tree.DrawWithBaseWind(surface, camera, world.NameAndEachWindTiledObject[tree.name]);
+                            tree.DrawWithBaseWind(surface, camera, world.nameAndEachWindTiledObject[tree.name]);
                         
                         else
-                            tiledObject.DrawWithBaseWind(surface, camera, world.NameAndEachWindTiledObject[tiledObject.name]);
+                            tiledObject.DrawWithBaseWind(surface, camera, world.nameAndEachWindTiledObject[tiledObject.name]);
                     }
 
                     else
@@ -220,7 +220,7 @@ public class World
                 
                 else if (obj is Rat ratEnemy)
                 {
-                    ratEnemy.draw.mainloop(ratEnemy, surface, camera);
+                    ratEnemy.draw.Mainloop(ratEnemy, surface, camera);
                 }
             }
         }
@@ -255,7 +255,7 @@ public class World
         public void UpdateTiledObjects(World world, Camera camera, GameTime gameTime)
         {
             if (BaseTiledObject.useBaseWind) {
-                foreach (BaseWind wind in world.NameAndEachWindTiledObject.Values)
+                foreach (BaseWind wind in world.nameAndEachWindTiledObject.Values)
                     wind.Update(gameTime);
             }
 
@@ -273,7 +273,7 @@ public class World
             {
                 if (enemy is Rat ratEnemy)
                 {
-                    ratEnemy.control.mainloop(ratEnemy, player);
+                    ratEnemy.control.Mainloop(ratEnemy, player);
                 }
             }
 
@@ -281,8 +281,8 @@ public class World
                 foreach (RectangleF borderRect in world.borderTile) {
                     if (enemy is Rat ratEnemy)
                     {
-                        if (!ratEnemy.tool.seePlayer(ratEnemy.draw.rectVisionArea, player)) continue;
-                        ratEnemy.control.calculateAllowVectorsBorder(borderRect, ratEnemy.draw.collideRect);
+                        if (!ratEnemy.tool.SeePlayer(ratEnemy.draw.rectVisionArea, player)) continue;
+                        ratEnemy.control.CalculateAllowVectorsBorder(borderRect, ratEnemy.draw.collideRect);
                     }
                 }
             }
@@ -294,8 +294,8 @@ public class World
                     
                     if (enemy is Rat ratEnemy)
                     {
-                        if (!ratEnemy.tool.seePlayer(ratEnemy.draw.rectVisionArea, player)) continue;
-                        ratEnemy.control.calculateAllowVectorsObject(world, obj, ratEnemy.draw.collideRect);
+                        if (!ratEnemy.tool.SeePlayer(ratEnemy.draw.rectVisionArea, player)) continue;
+                        ratEnemy.control.CalculateAllowVectorsObject(world, obj, ratEnemy.draw.collideRect);
                     }
                 }
             }
@@ -305,9 +305,9 @@ public class World
             {
                 if (enemy is Rat ratEnemy)
                 {
-                    if (!ratEnemy.tool.seePlayer(ratEnemy.draw.rectVisionArea, player)) continue;
-                    ratEnemy.control.addAllowVectors(ref ratEnemy.draw.rect, ref ratEnemy.draw.collideRect, ref ratEnemy.draw.rectVisionArea);
-                    ratEnemy.tool.animationMove(ratEnemy, player);
+                    if (!ratEnemy.tool.SeePlayer(ratEnemy.draw.rectVisionArea, player)) continue;
+                    ratEnemy.control.AddAllowVectors(ref ratEnemy.draw.rect, ref ratEnemy.draw.collideRect, ref ratEnemy.draw.rectVisionArea);
+                    ratEnemy.tool.AnimationMove(ratEnemy, player);
                 }
             }
             
@@ -349,9 +349,9 @@ public class World
                         var tileX = x * world.draw.map.TileWidth;
                         var tileY = y * world.draw.map.TileHeight;
 
-                        foreach (var gid_tile_data in world.gidTileAndBorderTile) {
-                            if (gid == gid_tile_data.Key) {
-                                foreach (var rect in gid_tile_data.Value) {
+                        foreach (var gidTileData in world.gidTileAndBorderTile) {
+                            if (gid == gidTileData.Key) {
+                                foreach (var rect in gidTileData.Value) {
                                     world.borderTile.Add(new RectangleF(
                                         tileX - rect.x, tileY - rect.y,
                                         rect.width, rect.height));
@@ -372,8 +372,8 @@ public class World
                 {
                     if (tiledObject.name == "Blue_plant")
                     {
-                        if (!world.NameAndEachWindTiledObject.ContainsKey("Blue_plant"))
-                            world.NameAndEachWindTiledObject.Add("Blue_plant", new BaseWind(
+                        if (!world.nameAndEachWindTiledObject.ContainsKey("Blue_plant"))
+                            world.nameAndEachWindTiledObject.Add("Blue_plant", new BaseWind(
                                 oscillationSpeed:2f, amplitude:9f, phaseShift:0f,
                                 dampingCoefficient:0.7f, timeToRandomChangeParameters:4f));
                         
@@ -385,8 +385,8 @@ public class World
                     
                     else if (tiledObject.name == "Tree")
                     {
-                        if (!world.NameAndEachWindTiledObject.ContainsKey("Tree"))
-                            world.NameAndEachWindTiledObject.Add("Tree", new BaseWind(
+                        if (!world.nameAndEachWindTiledObject.ContainsKey("Tree"))
+                            world.nameAndEachWindTiledObject.Add("Tree", new BaseWind(
                                 oscillationSpeed:1.5f, amplitude:18, phaseShift:0f,
                                 dampingCoefficient:0.3f, timeToRandomChangeParameters:7f));
                         
@@ -398,8 +398,8 @@ public class World
                     
                     else if (tiledObject.name == "Bush")
                     {
-                        if (!world.NameAndEachWindTiledObject.ContainsKey("Bush"))
-                            world.NameAndEachWindTiledObject.Add("Bush", new BaseWind(
+                        if (!world.nameAndEachWindTiledObject.ContainsKey("Bush"))
+                            world.nameAndEachWindTiledObject.Add("Bush", new BaseWind(
                                 oscillationSpeed:2f, amplitude:9f, phaseShift:0f,
                                 dampingCoefficient:0.9f, timeToRandomChangeParameters:4f));
                         
@@ -411,8 +411,8 @@ public class World
                     
                     else if (tiledObject.name == "Rock")
                     {
-                        if (!world.NameAndEachWindTiledObject.ContainsKey("Rock"))
-                            world.NameAndEachWindTiledObject.Add("Rock", new BaseWind(
+                        if (!world.nameAndEachWindTiledObject.ContainsKey("Rock"))
+                            world.nameAndEachWindTiledObject.Add("Rock", new BaseWind(
                                 oscillationSpeed:0f, amplitude:0f, phaseShift:0f,
                                 dampingCoefficient:0f, timeToRandomChangeParameters:0));
                         
@@ -424,8 +424,8 @@ public class World
                     
                     else if (tiledObject.name == "Green")
                     {
-                        if (!world.NameAndEachWindTiledObject.ContainsKey("Green"))
-                            world.NameAndEachWindTiledObject.Add("Green", new BaseWind(
+                        if (!world.nameAndEachWindTiledObject.ContainsKey("Green"))
+                            world.nameAndEachWindTiledObject.Add("Green", new BaseWind(
                                 oscillationSpeed:2f, amplitude:9f, phaseShift:0f,
                                 dampingCoefficient:0.9f, timeToRandomChangeParameters:10f));
                         
@@ -546,7 +546,7 @@ public class World
             {
                 if (enemy is Rat ratEnemy)
                 {
-                    ratEnemy.debugs.drawVisionArea(ratEnemy.draw.rectVisionArea, camera);
+                    ratEnemy.debugs.DrawVisionArea(ratEnemy.draw.rectVisionArea, camera);
                 }
             }
         }
@@ -558,7 +558,7 @@ public class World
                 if (enemy is Rat)
                 {
                     Rat obj = (Rat)enemy;
-                    obj.debugs.draw_hitbox(obj.draw.collideRect, camera);
+                    obj.debugs.DrawHitbox(obj.draw.collideRect, camera);
                 }
             }
         }

@@ -67,7 +67,7 @@ public class Game1 : Game
         // TODO: Add your update logic here
 
         player.control.Mainloop(player, camera, world);
-        camera.mainloop(player);
+        camera.Mainloop(player);
         world.control.Mainloop(player, camera, world, gameTime);
         base.Update(gameTime);
     }

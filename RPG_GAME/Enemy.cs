@@ -34,7 +34,7 @@ public abstract class Enemy
         public List<Texture2D> walkUp = new List<Texture2D>();
         public List<Texture2D> walkDown = new List<Texture2D>();
 
-        public virtual void draw_sprite(RectangleF rect, SpriteBatch surface, Camera camera)
+        public virtual void DrawSprite(RectangleF rect, SpriteBatch surface, Camera camera)
         {
             surface.Draw(sprite, new Vector2(rect.X - camera.x, rect.Y - camera.y), Color.White);
         }
@@ -42,8 +42,8 @@ public abstract class Enemy
 
     public class Control
     {
-        public string chase_direction = "none";
-        public char chase_priority = 'x';
+        public string chaseDirection = "none";
+        public char chasePriority = 'x';
         public float enemySpeed;
         public (float x, float y) vector = (0, 0);
         public bool moved;
@@ -54,25 +54,25 @@ public abstract class Enemy
         protected List<(int pixel, string direction)> vectors = new List<(int pixel, string direction)>();
         public List<(string direct, RectangleF rect)> historyDirection = new List<(string direct, RectangleF rect)>();
 
-        public virtual void addAllowVectors(ref RectangleF rectEnemy, ref RectangleF collidRectEnemy, ref RectangleF rectVisionArea)
+        public virtual void AddAllowVectors(ref RectangleF rectEnemy, ref RectangleF collidRectEnemy, ref RectangleF rectVisionArea)
         {
             if (vectors.Count > 0) {
-                bool pixel_minus = false;
+                bool pixelMinus = false;
                 vectors.Sort();
                 if (vectors[0].pixel < 0)
-                    pixel_minus = true;
+                    pixelMinus = true;
                 
-                int value_delta_pixel = pixel_minus ? vectors.Last().pixel : vectors[0].pixel;
+                int valueDeltaPixel = pixelMinus ? vectors.Last().pixel : vectors[0].pixel;
                 
                 if (vectors[0].direction == "x")
                 {
-                    vector.x = value_delta_pixel;
+                    vector.x = valueDeltaPixel;
                     if (vector.x == 0) moved = false;
                 }
                 
                 else if (vectors[0].direction == "y")
                 {
-                    vector.y = value_delta_pixel;
+                    vector.y = valueDeltaPixel;
                     if (vector.y == 0) moved = false;
                 }
             }
@@ -96,7 +96,7 @@ public abstract class Enemy
             vectors.Clear();
         }
 
-        public virtual void calculateAllowVectorsObject(World world, object tiledObject, RectangleF collideRectEnemy)
+        public virtual void CalculateAllowVectorsObject(World world, object tiledObject, RectangleF collideRectEnemy)
         {
             if (!(tiledObject is BaseTiledObject)) return;
 
@@ -151,7 +151,7 @@ public abstract class Enemy
             }
         }
         
-        public virtual void calculateAllowVectorsBorder(RectangleF borderRect, RectangleF collideRectEnemy)
+        public virtual void CalculateAllowVectorsBorder(RectangleF borderRect, RectangleF collideRectEnemy)
         {
             if (vector.x > 0) {
                 for (int i = 1; i < vector.x+1; i++) {
@@ -203,7 +203,7 @@ public abstract class Enemy
             }
         }
         
-        public virtual void move(Player player, RectangleF rectEnemy, RectangleF collideRectEnemy)
+        public virtual void Move(Player player, RectangleF rectEnemy, RectangleF collideRectEnemy)
         {
             vector.x = 0; vector.y = 0;
             directs.right = false;
@@ -211,55 +211,55 @@ public abstract class Enemy
             directs.up = false;
             directs.down = false;
             
-            if (chase_direction == "up")
+            if (chaseDirection == "up")
             {
                 vector.y -= enemySpeed;
             }
-            else if (chase_direction == "down")
+            else if (chaseDirection == "down")
             {
                 vector.y += enemySpeed;
             }
-            else if (chase_direction == "y_tp") //TODO: bug
+            else if (chaseDirection == "y_tp") //TODO: bug
             {
                 vector.y -= (collideRectEnemy.Y + collideRectEnemy.Height) -
                             (player.draw.rect.Y + player.draw.rect.Height);
             }
             
             
-            else if (chase_direction == "left")
+            else if (chaseDirection == "left")
             {
                 vector.x -= enemySpeed;
             }
-            else if (chase_direction == "right")
+            else if (chaseDirection == "right")
             {
                 vector.x += enemySpeed;
             }
-            else if (chase_direction == "x_tp")
+            else if (chaseDirection == "x_tp")
             {
                 vector.x -= (rectEnemy.X - (player.draw.rect.Width - rectEnemy.Width) - player.draw.rect.X);
             }
         }
 
-        public virtual void addChaseInHistory(RectangleF rectEnemy)
+        public virtual void AddChaseInHistory(RectangleF rectEnemy)
         {
             if (historyDirection.Count != 5)
             {
-                historyDirection.Add((chase_direction, rectEnemy));
+                historyDirection.Add((chaseDirection, rectEnemy));
             }
 
             else
             {
-                historyDirection.Insert(0, (chase_direction, rectEnemy));
+                historyDirection.Insert(0, (chaseDirection, rectEnemy));
                 historyDirection.RemoveAt(5);
             }
         }
 
-        public virtual bool isMoved()
+        public virtual bool IsMoved()
         {
             return historyDirection.All(item => item.rect == historyDirection[0].rect);
         }
 
-        public virtual void chasePriorityCalculate()
+        public virtual void ChasePriorityCalculate()
         {
             if (historyDirection.Count != 5) return;
 
@@ -268,66 +268,66 @@ public abstract class Enemy
 
             if (catchPlayerOnAxis)
             {
-                if (chase_priority == 'x')
-                    chase_priority = 'y';
+                if (chasePriority == 'x')
+                    chasePriority = 'y';
                 
                 else
-                    chase_priority = 'x';
+                    chasePriority = 'x';
 
                 catchPlayerOnAxis = false;
             }
             
-            else if (historyDirection.Count(item => item.direct == direct) == 5 && isMoved())
+            else if (historyDirection.Count(item => item.direct == direct) == 5 && IsMoved())
             {
-                if (chase_priority == 'x')
-                    chase_priority = 'y';
+                if (chasePriority == 'x')
+                    chasePriority = 'y';
                 
                 else
-                    chase_priority = 'x';
+                    chasePriority = 'x';
             }
         }
 
-        protected virtual void chaseForY(Player player, RectangleF rectEnemy, float deltaY)
+        protected virtual void ChaseForY(Player player, RectangleF rectEnemy, float deltaY)
         {
             if (Math.Abs(rectEnemy.Y - deltaY - player.draw.rect.Y) <= enemySpeed)
-                chase_direction = "y_tp";
+                chaseDirection = "y_tp";
                 
             else if (rectEnemy.Y - enemySpeed - deltaY > player.draw.rect.Y)
-                chase_direction = "up";
+                chaseDirection = "up";
                 
             else if (rectEnemy.Y - enemySpeed - deltaY < player.draw.rect.Y)
-                chase_direction = "down";
+                chaseDirection = "down";
         }
 
-        protected virtual void chaseForX(Player player, RectangleF rectEnemy, float deltaX)
+        protected virtual void ChaseForX(Player player, RectangleF rectEnemy, float deltaX)
         {
             if (Math.Abs(rectEnemy.X - deltaX - player.draw.rect.X) <= enemySpeed)
-                chase_direction = "x_tp";
+                chaseDirection = "x_tp";
                 
             else if (rectEnemy.X - enemySpeed - deltaX > player.draw.rect.X)
             {
-                chase_direction = "left";
+                chaseDirection = "left";
             }
                 
             else if (rectEnemy.X - enemySpeed - deltaX < player.draw.rect.X)
             {
-                chase_direction = "right";
+                chaseDirection = "right";
             }
         }
         
-        public virtual void chase_calculate(Player player, RectangleF rectEnemy)
+        public virtual void ChaseCalculate(Player player, RectangleF rectEnemy)
         {
             float deltaY = player.draw.rect.Height - rectEnemy.Height;
             float deltaX = player.draw.rect.Width - rectEnemy.Width;
-            chase_direction = "none";
+            chaseDirection = "none";
 
-            if (chase_priority == 'y' && rectEnemy.Y - deltaY != player.draw.rect.Y) {
-                chaseForY(player, rectEnemy, deltaY);
+            if (chasePriority == 'y' && rectEnemy.Y - deltaY != player.draw.rect.Y) {
+                ChaseForY(player, rectEnemy, deltaY);
                 catchPlayerOnAxis = false;
             }
             
-            else if (chase_priority == 'x' && rectEnemy.X - deltaX != player.draw.rect.X) {
-                chaseForX(player, rectEnemy, deltaX);
+            else if (chasePriority == 'x' && rectEnemy.X - deltaX != player.draw.rect.X) {
+                ChaseForX(player, rectEnemy, deltaX);
                 catchPlayerOnAxis = false;
             }
             
@@ -337,7 +337,7 @@ public abstract class Enemy
                     catchPlayerOnAxis = true;
                     return;
                 }
-                chaseForX(player, rectEnemy, deltaX);
+                ChaseForX(player, rectEnemy, deltaX);
             }
             
             else if (rectEnemy.X - deltaX == player.draw.rect.X) {
@@ -346,7 +346,7 @@ public abstract class Enemy
                     catchPlayerOnAxis = true;
                     return;
                 }
-                chaseForY(player, rectEnemy, deltaY);
+                ChaseForY(player, rectEnemy, deltaY);
             }
         }
     }
@@ -356,12 +356,12 @@ public abstract class Enemy
         public int animationFrame;
         public string oldDirect;
 
-        public virtual bool seePlayer(RectangleF rectVisionArea, Player player)
+        public virtual bool SeePlayer(RectangleF rectVisionArea, Player player)
         {
             return rectVisionArea.Intersects(player.draw.rect);
         }
 
-        public virtual void stay(ref (bool, bool, bool, bool) directs, ref string chaseDirection)
+        public virtual void Stay(ref (bool, bool, bool, bool) directs, ref string chaseDirection)
         {
             directs.Item1 = false;
             directs.Item2 = false;
@@ -375,7 +375,7 @@ public abstract class Enemy
     {
         public ShapeBatch ShapeBatch;
         
-        public virtual void draw_hitbox(RectangleF collideRect, Camera camera)
+        public virtual void DrawHitbox(RectangleF collideRect, Camera camera)
         {
             ShapeBatch.Begin();
             ShapeBatch.DrawRectangle(
@@ -387,7 +387,7 @@ public abstract class Enemy
             ShapeBatch.End();
         }
 
-        public virtual void drawVisionArea(RectangleF rectVisionArea, Camera camera)
+        public virtual void DrawVisionArea(RectangleF rectVisionArea, Camera camera)
         {
             ShapeBatch.Begin();
             ShapeBatch.DrawRectangle(
@@ -403,10 +403,10 @@ public abstract class Enemy
 
 public class Rat : Enemy
 {
-    public Draw draw;
-    public Control control;
-    public Tool tool;
-    public Debugs debugs;
+    new public Draw draw;
+    new public Control control;
+    new public Tool tool;
+    new public Debugs debugs;
 
     public Rat(GraphicsDevice device, ContentManager content, int positionX=0, int positionY=0)
     {
@@ -415,11 +415,11 @@ public class Rat : Enemy
         tool = new Tool();
         debugs = new Debugs();
 
-        draw.load(device, content);
+        draw.Load(device, content);
         debugs.ShapeBatch = new ShapeBatch(device, content);
     }
     
-    public class Draw : Enemy.Draw
+    new public class Draw : Enemy.Draw
     {
         public Draw(int positionX=0, int positionY=0)
         {
@@ -440,12 +440,12 @@ public class Rat : Enemy
                 height * multipleVisionArea * 2);
         }
         
-        public void mainloop(Rat rat, SpriteBatch surface, Camera camera)
+        public void Mainloop(Rat rat, SpriteBatch surface, Camera camera)
         {
-            draw_sprite(rat.draw.rect, surface, camera);
+            DrawSprite(rat.draw.rect, surface, camera);
         }
 
-        public void load(GraphicsDevice device, ContentManager content)
+        public void Load(GraphicsDevice device, ContentManager content)
         {
             walkLeft.Add(content.Load<Texture2D>("Enemy\\rat\\Rat_left_1"));
             walkLeft.Add(content.Load<Texture2D>("Enemy\\rat\\Rat_left_2"));
@@ -459,34 +459,34 @@ public class Rat : Enemy
         }
     }
     
-    public class Control : Enemy.Control
+    new public class Control : Enemy.Control
     {
         public Control()
         {
             enemySpeed = 3f;
         }
         
-        public void mainloop(Rat rat, Player player)
+        public void Mainloop(Rat rat, Player player)
         {
-            if (rat.tool.seePlayer(rat.draw.rectVisionArea, player))
+            if (rat.tool.SeePlayer(rat.draw.rectVisionArea, player))
             {
-                addChaseInHistory(rat.draw.rect);
-                chasePriorityCalculate();
-                chase_calculate(player, rat.draw.rect);
-                move(player, rat.draw.rect, rat.draw.collideRect);
+                AddChaseInHistory(rat.draw.rect);
+                ChasePriorityCalculate();
+                ChaseCalculate(player, rat.draw.rect);
+                Move(player, rat.draw.rect, rat.draw.collideRect);
             }
 
             else
             {
-                rat.tool.stay(ref rat.control.directs, ref rat.control.chase_direction);
+                rat.tool.Stay(ref rat.control.directs, ref rat.control.chaseDirection);
             }
             
         }
     }
 
-    public class Tool : Enemy.Tool
+    new public class Tool : Enemy.Tool
     {
-        public void animationMove(Rat rat, Player player)
+        public void AnimationMove(Rat rat, Player player)
         {
             float deltaX = player.draw.rect.Width - rat.draw.rect.Width;
             int countAnimationFrame = 12;
@@ -548,7 +548,7 @@ public class Rat : Enemy
         }
     }
 
-    public class Debugs : Enemy.Debugs
+    new public class Debugs : Enemy.Debugs
     {
         
     }
