@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using Microsoft.Xna.Framework;
-using SharpDX;
 
 namespace RPG_GAME;
 

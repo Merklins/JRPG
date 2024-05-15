@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
 using Apos.Shapes;
+using ImGuiNET;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MonoGame.ImGuiNet;
 using TiledCS;
 
 namespace RPG_GAME;
@@ -15,10 +17,12 @@ public class Game1 : Game
     public World world;
     public Player player;
     public Camera camera;
-
+    public ImGuiRenderer renderer;
+    
     public Game1()
     {
-        double limitFPS = 60; 
+        
+        double limitFPS = 60;
         
         _graphics = new GraphicsDeviceManager(this);
         _graphics.GraphicsProfile = GraphicsProfile.HiDef;
@@ -26,7 +30,7 @@ public class Game1 : Game
         IsMouseVisible = true;
         _graphics.PreferredBackBufferWidth = 1280;
         _graphics.PreferredBackBufferHeight = 720;
-        _graphics.IsFullScreen = true;
+        _graphics.IsFullScreen = false;
         _graphics.ApplyChanges();
         IsFixedTimeStep = true;
         TargetElapsedTime = TimeSpan.FromSeconds(1d / limitFPS);
@@ -38,7 +42,10 @@ public class Game1 : Game
         world = new World();
         player = new Player(GraphicsDevice, Content);
         camera = new Camera();
-
+        renderer = new ImGuiRenderer(this);
+        renderer.RebuildFontAtlas();
+        
+        
         base.Initialize();
     }
 
@@ -82,12 +89,16 @@ public class Game1 : Game
         spriteBatch.End();
 
         player.ui.Mainloop(player);
+        
+        renderer.BeginLayout(gameTime);
+        ImGui.ShowDemoWindow();
+        renderer.EndLayout();
+
         //world.debugs.drawRectVisionAreaEnemy(world, camera);
         //world.debugs.drawBorderTile(camera, world);
         //world.debugs.draw_object_hitbox(player, camera, world, spriteBatch);
         //player.debugs.draw_hitbox(player, spriteBatch);
         //world.debugs.drawCollideRectEnemy(world, camera);
-        
 
         base.Draw(gameTime);
     }

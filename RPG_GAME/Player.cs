@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using Apos.Shapes;
 using Microsoft.VisualBasic;
@@ -10,12 +11,12 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using RPG_GAME.MapObjects;
-using SharpDX;
 using TiledCS;
 using Color = Microsoft.Xna.Framework.Color;
 using Keyboard = Microsoft.Xna.Framework.Input.Keyboard;
-using Rectangle = SharpDX.Rectangle;
+using Mouse = Microsoft.Xna.Framework.Input.Mouse;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
+
 
 namespace RPG_GAME;
 

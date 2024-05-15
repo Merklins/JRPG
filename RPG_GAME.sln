@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPG_GAME", "RPG_GAME\RPG_GAME.csproj", "{99D4FE92-5D0B-4FB6-BD2C-682A5BDA338D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monogame.ImGuiNet", "MonoGame.ImGuiNet\Monogame.ImGuiNet.csproj", "{8CE5F8EF-3246-494B-9A49-20329C295E31}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{99D4FE92-5D0B-4FB6-BD2C-682A5BDA338D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99D4FE92-5D0B-4FB6-BD2C-682A5BDA338D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99D4FE92-5D0B-4FB6-BD2C-682A5BDA338D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CE5F8EF-3246-494B-9A49-20329C295E31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CE5F8EF-3246-494B-9A49-20329C295E31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CE5F8EF-3246-494B-9A49-20329C295E31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CE5F8EF-3246-494B-9A49-20329C295E31}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
