@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Map/TX Tileset Grass.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/Hero.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Map/Tree.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Map/Forest.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Map/Big_rock.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Map/Bush.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Map/Green.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Map/Tree1.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/Ninja_down1.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Map/Font.spritefont</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Map/Blue_plant.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/move_animation/Ninja_down1.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/move_animation/Ninja_down2.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/move_animation/Ninja_down3.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/move_animation/Ninja_left1.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/move_animation/Ninja_left2.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/move_animation/Ninja_left3.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/move_animation/Ninja_right1.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/move_animation/Ninja_right2.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/move_animation/Ninja_right3.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/move_animation/Ninja_up1.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/move_animation/Ninja_up2.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/move_animation/Ninja_up3.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/rat/Rat_damage_taken_1.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/rat/Rat_damage_taken_2.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/rat/Rat_damage_taken_3.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/rat/Rat_idle_1.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/rat/Rat_idle_2.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/rat/Rat_idle_3.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/rat/Rat_idle_right_1.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/rat/Rat_left_1.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/rat/Rat_left_2.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/rat/Rat_left_3.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/rat/Rat_right_1.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/rat/Rat_right_2.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/rat/Rat_right_3.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/rat/Rat_simple_attack_1.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/rat/Rat_simple_attack_2.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/rat/Rat_simple_attack_3.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/rat/Rat_walkup_left_1.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/rat/Rat_walkup_left_2.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/rat/Rat_walkup_left_3.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/rat/Rat_walkup_right_1.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/rat/Rat_walkup_right_2.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Player/rat/Rat_walkup_right_3.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Enemy/rat/Rat_damage_taken_1.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Enemy/rat/Rat_damage_taken_2.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Enemy/rat/Rat_damage_taken_3.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Enemy/rat/Rat_idle_1.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Enemy/rat/Rat_idle_2.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Enemy/rat/Rat_idle_3.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Enemy/rat/Rat_idle_right_1.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Enemy/rat/Rat_left_1.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Enemy/rat/Rat_left_2.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Enemy/rat/Rat_left_3.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Enemy/rat/Rat_right_1.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Enemy/rat/Rat_right_2.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Enemy/rat/Rat_right_3.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Enemy/rat/Rat_simple_attack_1.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Enemy/rat/Rat_simple_attack_2.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Enemy/rat/Rat_simple_attack_3.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Enemy/rat/Rat_walkup_left_1.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Enemy/rat/Rat_walkup_left_2.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Enemy/rat/Rat_walkup_left_3.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Enemy/rat/Rat_walkup_right_1.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Enemy/rat/Rat_walkup_right_2.png</File>
+    <File>C:/Users/Artem/LeetCode/JRPG/RPG_GAME/Content/Enemy/rat/Rat_walkup_right_3.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>

@@ -214,7 +214,6 @@ public class World
                         else
                             tiledObject.DrawWithSpecificWind(surface, camera);
                     }
-                    
                 }
                 
                 else if (obj is Rat ratEnemy)
