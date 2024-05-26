@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using RPG_GAME.Enemy;
 using RPG_GAME.MapObjects;
 using TiledCS;
 using Color = Microsoft.Xna.Framework.Color;
@@ -19,6 +20,7 @@ using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 
 namespace RPG_GAME;
+
 
 public class Player
 {
@@ -604,7 +606,7 @@ public class Player
         public RectangleF battleRect;
         public bool isFighting;
 
-        public void startFight(Player player, Enemy enemy, Camera camera)
+        public void startFight(Player player, BaseEnemy enemy, Camera camera)
         {
             player.tool.SetPositionPlayer(player, camera, -200, -200);
         }

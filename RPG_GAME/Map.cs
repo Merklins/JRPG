@@ -7,6 +7,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using RPG_GAME.Components;
+using RPG_GAME.Core;
+using RPG_GAME.Enemy;
+using RPG_GAME.Enemy.Rat;
 using RPG_GAME.MapObjects;
 using TiledCS;
 using Color = Microsoft.Xna.Framework.Color;
@@ -25,7 +29,7 @@ public class World
     
     public Dictionary<object, float> allObjectsAndY = new Dictionary<object, float>();
     public List<RectangleF> borderTile = new List<RectangleF>();
-    public List<Enemy> enemyMap = new List<Enemy>();
+    public List<BaseEnemy> enemyMap = new List<BaseEnemy>();
     public Dictionary<string, BaseWind> nameAndEachWindTiledObject = new Dictionary<string, BaseWind>();
 
     public Dictionary<int, List<(int x, int y, int width, int height)>> gidTileAndBorderTile =
@@ -153,6 +157,9 @@ public class World
 
         public void DrawBackground(Player player, Camera camera, World world, SpriteBatch surface)
         {
+            var dest = new Rectangle(0, 0, map.TileWidth, map.TileHeight);
+            var src = new Rectangle(0, 0, map.TileWidth, map.TileHeight);
+
             foreach (var layer in map.Layers) {
                 if (layer.name != "Background" && layer.name != "Украшения") continue;
                 for (int x = 0; x < layer.width; x++) {
@@ -161,6 +168,11 @@ public class World
                         var gid = layer.data[index];
                         var tileX = x * map.TileWidth;
                         var tileY = y * map.TileHeight;
+                        
+                        if (!new RectangleF(camera.x, camera.y, 1280, 720).Intersects(
+                            new RectangleF((float)tileX, (float)tileY, 48, 48)))
+                            continue;
+                      
 
                         if (gid == 0) continue;
 
@@ -169,7 +181,7 @@ public class World
 
                         var rect = map.GetSourceRect(mapTileset, tileset, gid);
 
-                        var source = new Rectangle(rect.x, rect.y, rect.width, rect.height);
+                        var source = new Rectangle(rect.x, rect.y, map.TileWidth, map.TileHeight);
                         var destination = new Rectangle(
                             (int)(tileX - camera.x),
                             (int)(tileY - camera.y),  
@@ -186,10 +198,11 @@ public class World
         {
             foreach (var obj in world.allObjectsAndY.Keys)
             {
-                if (obj is Player)
-                    ((Player)obj).draw.Mainloop(player, surface);
+                //if (obj is Player)
+                //    ((Player)obj).draw.Mainloop(player, surface);
 
-                else if (obj is BaseTiledObject tiledObject)
+                //else 
+                if (obj is BaseTiledObject tiledObject)
                 {
                     if (BaseTiledObject.noWindSensetiveObject.Contains(tiledObject.name))
                     {
@@ -218,7 +231,7 @@ public class World
                 
                 else if (obj is Rat ratEnemy)
                 {
-                    ratEnemy.draw.Mainloop(ratEnemy, surface, camera);
+                    // ratEnemy.draw.Mainloop(ratEnemy, surface, camera);
                 }
             }
         }
@@ -239,13 +252,13 @@ public class World
 
         public void CheckAndStartFightWithEnemy(World world, Player player, Camera camera)
         {
-            foreach (Enemy enemy in world.enemyMap)
+            foreach (BaseEnemy enemy in world.enemyMap)
             {
                 if (enemy is Rat ratEnemy)
                 {
                     if (!player.fight.EnemyChasedPlayer(player.draw.rect, ratEnemy.draw.rect)) continue;
                     
-                    player.fight.startFight(player, enemy, camera);
+                    //player.fight.startFight(player, enemy, camera
                 }
             }
         }
@@ -267,7 +280,7 @@ public class World
         
         public void MoveEnemy(World world, Player player)
         {
-            foreach (Enemy enemy in world.enemyMap)
+            foreach (BaseEnemy enemy in world.enemyMap)
             {
                 if (enemy is Rat ratEnemy)
                 {
@@ -275,7 +288,7 @@ public class World
                 }
             }
 
-            foreach (Enemy enemy in world.enemyMap) {
+            foreach (BaseEnemy enemy in world.enemyMap) {
                 foreach (RectangleF borderRect in world.borderTile) {
                     if (enemy is Rat ratEnemy)
                     {
@@ -286,7 +299,7 @@ public class World
             }
 
 
-            foreach (Enemy enemy in world.enemyMap) {
+            foreach (BaseEnemy enemy in world.enemyMap) {
                 foreach (object obj in world.allObjectsAndY.Keys) {
                     if (!(obj is TiledObject)) continue;
                     
@@ -299,7 +312,7 @@ public class World
             }
             
 
-            foreach (Enemy enemy in world.enemyMap)
+            foreach (BaseEnemy enemy in world.enemyMap)
             {
                 if (enemy is Rat ratEnemy)
                 {
@@ -318,7 +331,7 @@ public class World
         
         public void UpdateEnemyRect(World world)
         {
-            foreach (Enemy enemy in world.enemyMap)
+            foreach (BaseEnemy enemy in world.enemyMap)
             {
                 if (enemy is Rat ratEnemy)
                     world.allObjectsAndY[enemy] = ratEnemy.draw.rect.Y;
@@ -347,6 +360,8 @@ public class World
                         var tileX = x * world.draw.map.TileWidth;
                         var tileY = y * world.draw.map.TileHeight;
 
+                       
+
                         foreach (var gidTileData in world.gidTileAndBorderTile) {
                             if (gid == gidTileData.Key) {
                                 foreach (var rect in gidTileData.Value) {
@@ -356,6 +371,8 @@ public class World
                                 }
                             }
                         }
+
+           
                     }
                 }
             }
@@ -540,7 +557,7 @@ public class World
 
         public void DrawRectVisionAreaEnemy(World world, Camera camera)
         {
-            foreach (Enemy enemy in world.enemyMap)
+            foreach (BaseEnemy enemy in world.enemyMap)
             {
                 if (enemy is Rat ratEnemy)
                 {
@@ -551,7 +568,7 @@ public class World
         
         public void DrawCollideRectEnemy(World world, Camera camera)
         {
-            foreach (Enemy enemy in world.enemyMap)
+            foreach (BaseEnemy enemy in world.enemyMap)
             {
                 if (enemy is Rat)
                 {
@@ -561,7 +578,7 @@ public class World
             }
         }
         
-        public void DrawBorderTile(Camera camera, World world)
+        public void DrawBorderTile(Camera camera, World world, Entity player)
         {
             foreach (RectangleF tileRect in world.borderTile)
             {

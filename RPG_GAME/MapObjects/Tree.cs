@@ -50,7 +50,7 @@ public class Tree : BaseTiledObject
 
     public override void DrawWithSpecificWind(SpriteBatch spriteBatch, Camera camera)
     {
-        if (!PlayerSeeObject(camera)) return;
+        //if (!PlayerSeeObject(camera)) return;
         
         for (int y = 0; y < Texture.Height; y++)
         {

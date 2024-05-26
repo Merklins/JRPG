@@ -1,0 +1,6 @@
+{
+	"left": [ "Ninja_left1", "Ninja_left2", "Ninja_left3" ],
+	"right": [ "Ninja_right1", "Ninja_right2", "Ninja_right3" ],
+	"up": [ "Ninja_up1", "Ninja_up2", "Ninja_up3" ],
+	"down": [ "Ninja_down1", "Ninja_down2", "Ninja_down3" ]
+}
